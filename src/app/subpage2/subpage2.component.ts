@@ -1,32 +1,32 @@
 import {Component, OnInit} from '@angular/core'
-import {NavigationEnd, Router, RouterOutlet} from '@angular/router'
+import {NavigationEnd, Router, RouterLink} from '@angular/router'
 import {GoogleTagManagerService} from 'angular-google-tag-manager'
 
 @Component({
-  selector: 'app-root',
+  selector: 'app-subpage2',
   standalone: true,
-  imports: [RouterOutlet],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  imports: [
+    RouterLink
+  ],
+  templateUrl: './subpage2.component.html',
+  styleUrl: './subpage2.component.css'
 })
-export class AppComponent implements OnInit{
-  title = 'cmp-try';
-
+export class Subpage2Component implements OnInit {
   constructor(
     private gtmService: GoogleTagManagerService,
     private router: Router) {
   }
 
   ngOnInit() {
-    this.router.events.forEach(item => {
+    /*this.router.events.forEach(item => {
       if (item instanceof NavigationEnd) {
         const gtmTag = {
-          event: 'cookie_consent_update',
+          event: `page visit ${item.url}`,
           pageName: item.url
         };
 
         this.gtmService.pushTag(gtmTag);
       }
-    });
+    });*/
   }
 }
